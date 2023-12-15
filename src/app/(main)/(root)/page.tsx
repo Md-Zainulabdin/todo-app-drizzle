@@ -1,4 +1,4 @@
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "@/components/CreateBar";
 import TodoList from "@/components/Todos";
 
 const Home: React.FC = () => {

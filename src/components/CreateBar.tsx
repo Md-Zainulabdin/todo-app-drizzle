@@ -25,16 +25,16 @@ const formSchema = z.object({
     .max(100),
 });
 
-interface SearchBarProps {
+interface CreateBarProps {
   initialData?: {
     id: string;
     task: String;
   };
 }
 
-type SearchBarValue = z.infer<typeof formSchema>;
+type CreateBarValue = z.infer<typeof formSchema>;
 
-const SearchBar: React.FC<SearchBarProps> = ({ initialData }) => {
+const CreateBar: React.FC<CreateBarProps> = ({ initialData }) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   //spinner
@@ -42,14 +42,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialData }) => {
     spinner: Loader2,
   };
 
-  const form = useForm<SearchBarValue>({
+  const form = useForm<CreateBarValue>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       task: "",
     },
   });
 
-  async function onSubmitHandler(data: SearchBarValue) {
+  async function onSubmitHandler(data: CreateBarValue) {
     setLoading(true);
 
     try {
@@ -100,4 +100,4 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialData }) => {
   );
 };
 
-export default SearchBar;
+export default CreateBar;
