@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sql } from "@vercel/postgres";
-import { db, todoTable } from "@/libs/drizzle";
+import { db, todoTable } from "@/lib/drizzle";
 import { eq } from "drizzle-orm";
-import { todo } from "node:test";
 
 export const GET = async (request: NextRequest) => {
   try {
@@ -17,13 +16,14 @@ export const GET = async (request: NextRequest) => {
 
 export const POST = async (request: NextRequest) => {
   const { task } = await request.json();
+  console.log(task);
+  
   try {
     if (!task) {
       return new NextResponse("Task field is required!");
     }
 
     const res = await db.insert(todoTable).values({ task }).returning();
-    console.log(res);
 
     return NextResponse.json({ message: "Data added successfully" });
   } catch (error) {
