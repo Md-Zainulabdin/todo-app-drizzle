@@ -7,8 +7,7 @@ export const getTodos = async () => {
       throw new Error("Failed to fetch todos");
     }
 
-    const result = await response.json();
-    return result;
+    return await response.json();
   } catch (error) {
     console.log(error);
   }
